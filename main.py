@@ -2,7 +2,7 @@ from fastapi import FastAPI, Path
 from typing import Optional
 
 
-# uvicorn myapi:app --reload 
+# uvicorn myapi:app --reload
 
 app = FastAPI()
 
@@ -31,7 +31,7 @@ def get_students(student_id: int = Path(None, description="The ID of the student
 
 
 @app.get("/get-by-name")
-def get_students(*, name: Optional[str] = None, test: int):
+def get_students(name: Optional[str] = None):
     for student_id in students:
         if students[student_id]["name"] == name:
             return students[student_id]
@@ -41,8 +41,3 @@ def get_students(*, name: Optional[str] = None, test: int):
 @app.get("/get-students/")
 def get_students():
     return students
-
-@app.get("/sample")
-def get_sample():
-    return "Sample Output"
-
